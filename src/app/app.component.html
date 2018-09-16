@@ -1,17 +1,2 @@
-<div>
-  <span><strong>Welcome to ement chat system!!</strong> </span>
-</div>
-<br>
-<input type="text" [(ngModel)]="message" name="message" placeholder="enter message">
-<input type="text" [(ngModel)]="recieverid" name="recieverid" placeholder="Enter recipient!!">
-<input type="submit" value="Add a comment" (click)="addmessage()">
-
-
-
-<ul *ngFor="let msg of posts |async">
-    <li>
-      <strong>{{msg.recieverID}}</strong>
-      <br>
-      {{msg.message}}
-    </li>
-</ul>  
+<!--The content below is only a placeholder and can be replaced.-->
+<app-navbar></app-navbar>
