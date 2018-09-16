@@ -1,0 +1,9 @@
+
+<ul *ngFor="let msg of posts |async">
+  <li>
+    <strong>Sender: {{msg.recieverID}}</strong>
+    <br>
+    Message:
+    {{msg.message}}
+  </li>
+</ul>  
