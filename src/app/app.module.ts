@@ -4,14 +4,15 @@ import {AngularFireModule} from 'angularfire2';
 import {AngularFirestoreModule} from 'angularfire2/firestore';
 import {FormsModule} from '@angular/forms';
 
-var fiebaseconfig ={
-  apiKey: "AIzaSyAw1dPGrmqwa63g0tRtU7rmSJnFn1Zki8A",
-  authDomain: "e-ment-chat.firebaseapp.com",
-  databaseURL: "https://e-ment-chat.firebaseio.com",
-  projectId: "e-ment-chat",
-  storageBucket: "e-ment-chat.appspot.com",
-  messagingSenderId: "748618873530"
-}
+// tslint:disable-next-line:prefer-const
+const fiebaseconfig = {
+  apiKey: 'AIzaSyAw1dPGrmqwa63g0tRtU7rmSJnFn1Zki8A',
+  authDomain: 'e-ment-chat.firebaseapp.com',
+  databaseURL: 'https://e-ment-chat.firebaseio.com',
+  projectId: 'e-ment-chat',
+  storageBucket: 'e-ment-chat.appspot.com',
+  messagingSenderId: '748618873530'
+};
 
 
 import { AppComponent } from './app.component';
@@ -25,7 +26,7 @@ import { InboxComponent } from './inbox/inbox.component';
     AppComponent,
     NavbarComponent,
     ChatmessagesComponent,
-    InboxComponent,   
+    InboxComponent
 
   ],
   imports: [
@@ -35,16 +36,14 @@ import { InboxComponent } from './inbox/inbox.component';
     FormsModule,
     RouterModule.forRoot([
       {
-        path:'inbox',
+        path: 'inbox',
         component: InboxComponent
       },
       {
-        path:'sendmessage',
+        path: 'sendmessage',
         component: ChatmessagesComponent
       }
-     
     ])
-    
   ],
   providers: [],
   bootstrap: [AppComponent]

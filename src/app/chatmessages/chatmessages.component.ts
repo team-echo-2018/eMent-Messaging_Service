@@ -1,4 +1,4 @@
-//import { Component, OnInit } from '@angular/core';
+
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { Observable } from 'node_modules/rxjs';
@@ -34,12 +34,12 @@ export class ChatmessagesComponent implements OnInit {
   }
 
   addmessage(){
-        
+
     this.afs.collection('messages').add({'message':this.message,'recieverID':this.recieverid,'senderID':this.senderId});
     //this.afs.collection('messages').doc(this.recieverid).set({'message':this.message,'recieverID':this.recieverid,'senderID':this.senderId});
-    
+
   }
   openNav(){
-    
+
   }
 }
