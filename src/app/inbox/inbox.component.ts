@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { Observable } from 'rxjs';
+import { stringify } from '@angular/compiler/src/util';
 
 // tslint:disable-next-line:class-name
 interface imessage {
@@ -8,7 +9,7 @@ interface imessage {
   recieverId: string;
   senderId: string;
 }
-//let senderList =Array<{string}>;
+//  let senderList =Array<{string}>;
 
 @Component({
   selector: 'app-inbox',
@@ -32,18 +33,15 @@ export class InboxComponent implements OnInit {
   ngOnInit() {
     this.postsCol = this.afs.collection('messages', ref => ref.where('recieverID', '==', this.owner));
     this.posts = this.postsCol.valueChanges();
-    this.posts.forEach(element => {
-      console.log(element);
-      element.forEach(msg => {
-        if (msg.recieverID === 'mario') {
-          this.senderSet.add(msg.recieverId);
-        }
-        console.log(msg);
+    this.posts.subscribe((posts) => {
+      // console.log(posts[1]);
+      const reciever: string = posts[1].recieverId;
+      console.log(reciever ===undefined);
 
-      });
-      console.log(this.senderSet);
 
     });
+    // console.log(this.senderSet);
+
 
   }
 
