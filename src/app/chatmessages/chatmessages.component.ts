@@ -4,6 +4,11 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument 
 import { Observable } from 'node_modules/rxjs';
 import { map } from 'rxjs/operators';
 
+interface isendEvent {
+  recieverID: string;
+  senderID: string;
+}
+
 interface imessage{
   message:string;
   recieverId:string;
@@ -36,6 +41,8 @@ export class ChatmessagesComponent implements OnInit {
   addmessage(){
 
     this.afs.collection('messages').add({'message':this.message,'recieverID':this.recieverid,'senderID':this.senderId});
+    this.afs.collection('sendEvent').add({'recieverID':this.recieverid,'senderID':this.senderId});
+
     //this.afs.collection('messages').doc(this.recieverid).set({'message':this.message,'recieverID':this.recieverid,'senderID':this.senderId});
 
   }

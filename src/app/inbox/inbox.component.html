@@ -1,9 +1,8 @@
 
-<ul *ngFor="let Sender of senderset |async">
+<ul *ngFor="let post of posts |async">
   <li>
-    <strong>Sender: {{Sender}}</strong>
-    <br>
-    Message:
-    {{'Has sent a Message'}}
+    <strong>Messages from  {{post.senderID}}</strong>
+
+
   </li>
 </ul>
