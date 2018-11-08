@@ -1,8 +1,10 @@
 
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
-import { Observable } from 'node_modules/rxjs';
+import { Observable, from } from 'node_modules/rxjs';
 import { map } from 'rxjs/operators';
+import { ShareuNameService } from "../shareu-name.service"
+import { log } from 'util';
 
 interface isendEvent {
   recieverID: string;
@@ -22,6 +24,7 @@ interface imessage{
 })
 export class ChatmessagesComponent implements OnInit {
 
+  val:string;
   postsCol: AngularFirestoreCollection<imessage>;
   posts: Observable<imessage[]>;
 
@@ -29,13 +32,20 @@ export class ChatmessagesComponent implements OnInit {
   senderId :string ="usr003";
   recieverid:string ;
   owner:string ='mario';
-  constructor(private afs: AngularFirestore) {
+  constructor(private afs: AngularFirestore ,private data :ShareuNameService) {
 
   }
 
   ngOnInit() {
-    this.postsCol = this.afs.collection('messages',ref =>ref.where('recieverID','==',this.owner));
+
+    this.data.currentMessage.subscribe(val =>this.senderId);
+    console.log(this.senderId+"from message component");
+
+    this.postsCol = this.afs.collection('messages',ref =>ref.where('recieverID','==',this.senderId));
     this.posts = this.postsCol.valueChanges();
+
+
+
   }
 
   addmessage(){

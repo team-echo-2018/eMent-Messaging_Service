@@ -1,6 +1,6 @@
 
 <ul *ngFor="let post of posts |async">
-  <li>
+  <li (click)="getPost(post.senderID)">
     <strong>Messages from  {{post.senderID}}</strong>
 
 

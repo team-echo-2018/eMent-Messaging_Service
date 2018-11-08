@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
-import { Observable } from 'rxjs';
+import { Observable, from } from 'rxjs';
 import { stringify } from '@angular/compiler/src/util';
 import { map } from 'rxjs/operators';
+import { ShareuNameService } from '../shareu-name.service';
 
 // tslint:disable-next-line:class-name
 interface isendEvent {
@@ -22,17 +23,18 @@ export class InboxComponent implements OnInit {
   posts: Observable<isendEvent[]>;
   senderset =new Set();
 
+
   message: string;
   senderId = 'usr003';
   recieverid: string ;
   owner = "mario";
-  constructor(private afs: AngularFirestore) {
+  constructor(private afs: AngularFirestore ,private data :ShareuNameService) {
 
   }
 
   ngOnInit() {
-    //this.postsCol = this.afs.collection('sendEvent', ref => ref.where('recieverID', '==', this.owner));
-    this.postsCol =this.afs.collection('sendEvent');
+    this.postsCol = this.afs.collection('sendEvent', ref => ref.where('recieverID', '==', this.owner));
+    // this.postsCol =this.afs.collection('sendEvent');
    // console.log(this.owner);
 
     this.posts = this.postsCol.valueChanges();
@@ -42,12 +44,24 @@ export class InboxComponent implements OnInit {
       console.log(p[0].senderID);
       if(!this.senderset[p[0].senderID]){
          this.senderset.add(p[0].senderID);
+
+
       }
       console.log(this.senderset);
 
 
     })
+    this.data.currentMessage.subscribe(val =>this.senderId);
 
+
+
+  }
+
+  getPost(senderID){
+    //console.log(senderID);
+
+    this.recieverid =senderID;
+    this.data.changesMessage(senderID);
   }
 
   addmessage() {

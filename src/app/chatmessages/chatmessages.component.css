@@ -6,7 +6,7 @@ input,textarea{
     background: none;
     border-bottom: 1px solid #414a59 !important;
     border: 0;
-    color: aliceblue
+    color: rgb(37, 38, 39)
 }
 input[type='submit'] {
     background-color:#ffcc00;
