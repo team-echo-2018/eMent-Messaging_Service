@@ -16,7 +16,7 @@ const fiebaseconfig = {
 
 
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './navbar/navbar.component';
+//import { NavbarComponent } from './navbar/navbar.component';
 import { ChatmessagesComponent } from './chatmessages/chatmessages.component';
 import { RouterModule } from '@angular/router';
 import { InboxComponent } from './inbox/inbox.component';
@@ -24,7 +24,6 @@ import { InboxComponent } from './inbox/inbox.component';
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent,
     ChatmessagesComponent,
     InboxComponent
 
